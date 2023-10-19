@@ -6,7 +6,7 @@
 /*   By: julberna <julberna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/15 21:39:09 by julberna          #+#    #+#             */
-/*   Updated: 2023/10/19 16:22:57 by julberna         ###   ########.fr       */
+/*   Updated: 2023/10/19 17:23:37 by julberna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,9 @@ typedef struct s_stack
 	int				cost_b;
 	struct s_stack	*next;
 }				t_stack;
+
+
+int	check_sort(t_stack *stack);
 
 void	print_stack(t_stack *stack);
 void	check_duplicate(t_stack *stack);

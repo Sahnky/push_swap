@@ -6,7 +6,7 @@
 /*   By: julberna <julberna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/15 21:43:00 by julberna          #+#    #+#             */
-/*   Updated: 2023/10/19 17:00:40 by julberna         ###   ########.fr       */
+/*   Updated: 2023/10/19 19:17:56 by julberna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,3 +57,18 @@ void	check_duplicate(t_stack *stack)
 		stack = stack->next;
 	}
 }
+
+int	check_sort(t_stack *stack)
+{
+	while (stack->next != NULL)
+	{
+		if (stack->value > stack->next->value)
+			return (0);
+		stack = stack->next;
+	}
+	return (1);
+}
+
+// void	add_target_pos(t_stack *stack)
+// {
+// }

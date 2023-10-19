@@ -6,23 +6,20 @@
 /*   By: julberna <julberna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 20:03:07 by julberna          #+#    #+#             */
-/*   Updated: 2023/10/18 20:58:11 by julberna         ###   ########.fr       */
+/*   Updated: 2023/10/19 16:24:28 by julberna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_stack	*create_stack(char **values)
+void	create_stack(char **values, t_stack **stack_a)
 {
 	int		i;
-	t_stack	*stack_a;
 
 	i = -1;
-	stack_a = NULL;
+	*stack_a = NULL;
 	while (values[++i] != NULL)
-		stack_a = lstnew(&stack_a, ft_atoi(values[i]), i);
-	lstiter(stack_a, print_stack);
-	return (stack_a);
+		*stack_a = lstnew(stack_a, ft_atoi(values[i]), i);
 }
 
 t_stack	*lstnew(t_stack **stack, int value, int pos)

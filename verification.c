@@ -6,7 +6,7 @@
 /*   By: julberna <julberna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/15 21:43:00 by julberna          #+#    #+#             */
-/*   Updated: 2023/10/19 16:33:26 by julberna         ###   ########.fr       */
+/*   Updated: 2023/10/19 17:00:40 by julberna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,11 @@ void	check_digit(int argc, char ***argv)
 		j = 0;
 		while ((*argv)[i][++j] != '\0')
 		{
-			if (!ft_isdigit((*argv)[i][j]) && !(ft_strchr("+-", (*argv)[i][j]) && \
-				ft_isdigit((*argv)[i][j + 1])))
-			{
-				write(2, "Error!\nThe list contains non-digit elements."
-					" Please, provide a valid list of integers.\n", 87);
-				exit(1);
-			}
+			if (!ft_isdigit((*argv)[i][j]) && !(ft_strchr("+-", (*argv)[i][j]) && ft_isdigit((*argv)[i][j + 1])))
+				exit(write(2, "Error!\nThe list contains non-digit elements."
+					" Please, provide a valid list of integers.\n", 87));
+			else if (ft_atoi((*argv)[i]) > INT_MAX || ft_atoi((*argv)[i]) < INT_MIN)
+				exit(write(2, "Error!\nThe list contains values that don't fit an integer. Please, provide a valid list of numbers.\n", 100));
 		}
 	}
 }

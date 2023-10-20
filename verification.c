@@ -6,7 +6,7 @@
 /*   By: julberna <julberna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/15 21:43:00 by julberna          #+#    #+#             */
-/*   Updated: 2023/10/20 13:57:16 by julberna         ###   ########.fr       */
+/*   Updated: 2023/10/20 18:09:06 by julberna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,10 @@ void	check_digit(int argc, char ***argv)
 						".\n", 100));
 		}
 	}
+	i = -1;
+	while ((*argv)[++i] != NULL)
+		free((*argv)[i]);
+	free((*argv));
 }
 
 void	check_duplicate(t_stack *stack)

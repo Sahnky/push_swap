@@ -6,7 +6,7 @@
 /*   By: julberna <julberna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/15 21:39:09 by julberna          #+#    #+#             */
-/*   Updated: 2023/10/19 17:23:37 by julberna         ###   ########.fr       */
+/*   Updated: 2023/10/19 21:39:00 by julberna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,10 @@ typedef struct s_stack
 
 
 int	check_sort(t_stack *stack);
+int	lstsize(t_stack *stack);
 
+void	sort(t_stack **stack);
+void	add_index(t_stack **stack);
 void	print_stack(t_stack *stack);
 void	check_duplicate(t_stack *stack);
 void	check_digit(int argc, char ***argv);
@@ -41,6 +44,7 @@ void	lstiter(t_stack *stack, void (*f)(t_stack *));
 void	create_stack(char **values, t_stack **stack_a);
 
 t_stack	*lstlast(t_stack *stack);
+t_stack	*merge(t_stack *left, t_stack *right);
 t_stack	*lstnew(t_stack **stack, int value, int pos);
 
 #endif

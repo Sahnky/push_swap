@@ -6,7 +6,7 @@
 /*   By: julberna <julberna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/15 21:43:00 by julberna          #+#    #+#             */
-/*   Updated: 2023/10/19 19:17:56 by julberna         ###   ########.fr       */
+/*   Updated: 2023/10/19 21:43:18 by julberna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,64 @@ int	check_sort(t_stack *stack)
 	return (1);
 }
 
-// void	add_target_pos(t_stack *stack)
-// {
-// }
+void	stack_split(t_stack *stack, t_stack **right, t_stack **left)
+{
+	t_stack	*tortoise;
+	t_stack	*hare;
+
+	tortoise = stack;
+	hare = stack->next;
+	while (hare && hare->next)
+	{
+		tortoise = tortoise->next;
+		hare = hare->next->next;
+	}
+	*left = stack;
+	*right = tortoise->next;
+	tortoise->next = NULL;
+}
+
+t_stack	*merge(t_stack *left, t_stack *right)
+{
+	t_stack *sorted;
+	
+	sorted = NULL;
+	if (left == NULL)
+		return (right);
+	else if (right == NULL)
+		return (left);
+	if (left->value <= right->value)
+	{
+		sorted = left;
+		sorted->next = merge(left->next, right);
+	}
+	else
+	{
+		sorted = right;
+		sorted->next = merge(left, right->next);
+	}
+	return (sorted);
+}
+
+void	sort(t_stack **stack)
+{
+	t_stack	*head;
+	t_stack *left;
+	t_stack *right;
+
+	head = *stack;
+	if ((head == NULL) || (head->next == NULL))
+		return ;
+	stack_split(*stack, &left, &right);
+	sort(&left);
+	sort(&right);
+	*stack = merge(left, right);
+}
+
+void	add_index(t_stack **stack)
+{
+	t_stack *stack_copy;
+	
+	stack_copy = *stack;
+	sort(&stack_copy);
+}

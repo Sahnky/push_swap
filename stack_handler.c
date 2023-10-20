@@ -6,7 +6,7 @@
 /*   By: julberna <julberna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 20:03:07 by julberna          #+#    #+#             */
-/*   Updated: 2023/10/19 16:24:28 by julberna         ###   ########.fr       */
+/*   Updated: 2023/10/19 20:21:33 by julberna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,21 @@ void	lstiter(t_stack *stack, void (*f)(t_stack *))
 		f(stack);
 		stack = stack->next;
 	}
+}
+
+int	lstsize(t_stack *stack)
+{
+	int	len;
+
+	if (stack == NULL)
+		return (0);
+	len = 1;
+	while (stack->next != NULL)
+	{
+		len++;
+		stack = stack->next;
+	}
+	return (len);
 }
 
 void	print_stack(t_stack *stack)

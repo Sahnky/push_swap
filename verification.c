@@ -6,7 +6,7 @@
 /*   By: julberna <julberna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/15 21:43:00 by julberna          #+#    #+#             */
-/*   Updated: 2023/10/20 18:09:06 by julberna         ###   ########.fr       */
+/*   Updated: 2023/10/20 21:21:15 by julberna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,45 +25,47 @@ void	check_digit(int argc, char ***argv)
 	i = -1;
 	while ((*argv)[++i] != NULL)
 	{
-		j = 0;
+		j = -1;
 		while ((*argv)[i][++j] != '\0')
-		{
-			if (!ft_isdigit((*argv)[i][j]) && !(ft_strchr("+-", \
-			(*argv)[i][j]) && ft_isdigit((*argv)[i][j + 1])))
-				exit(write(2, "Error!\nThe list contains non-digit elements."
-						" Please, provide a valid list of integers.\n", 87));
-			else if (ft_atoi((*argv)[i]) > INT_MAX || \
-					ft_atoi((*argv)[i]) < INT_MIN)
-				exit(write(2, "Error!\nThe list contains values that don't fit "
-						"an integer. Please, provide a valid list of numbers"
-						".\n", 100));
-		}
+			check_error(argv, (*argv)[i]);
 	}
-	i = -1;
-	while ((*argv)[++i] != NULL)
-		free((*argv)[i]);
-	free((*argv));
 }
 
-void	check_duplicate(t_stack *stack)
+void	check_error(char ***argv, char *str)
+{
+	if (!ft_isdigit(*str) && !(ft_strchr("+-", *str) && ft_isdigit(*(str + 1))))
+		message(NON_DIGIT);
+	else if (ft_atoi(str) > INT_MAX || ft_atoi(str) < INT_MIN)
+		message(OUT_LIMIT);
+	else
+		return ;
+	free_args(argv);
+	exit(FAILURE);
+}
+
+void	check_duplicate(char ***argv, t_stack **stack)
 {
 	t_stack	*stack_copy;
+	t_stack	*temp;
 
-	while (stack)
+	temp = *stack;
+	while (*stack)
 	{
-		stack_copy = stack->next;
+		stack_copy = (*stack)->next;
 		while (stack_copy)
 		{
-			if (stack->value == stack_copy->value)
+			if ((*stack)->value == stack_copy->value)
 			{
-				write(2, "Error!\nThe list contains duplicate elements."
-					" Please, provide a list of unique integers.\n", 88);
-				exit(1);
+				message(REPEAT);
+				free_args(argv);
+				free_stack(&temp);
+				exit(FAILURE);
 			}
 			stack_copy = stack_copy->next;
 		}
-		stack = stack->next;
+		*stack = (*stack)->next;
 	}
+	*stack = temp;
 }
 
 int	check_sort(t_stack *stack)

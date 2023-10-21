@@ -1,16 +1,17 @@
-NAME 	= push_swap
+NAME 	=	push_swap
 
-CC		= cc
-CFLAGS	= -Werror -Wall -Wextra -g3
-LIBFT 	= ./libft/libft.a
+CC		=	cc
+CFLAGS	=	-Werror -Wall -Wextra -g3
+LIBFT 	=	./libft/libft.a
 
-SRC 	= push_swap.c verification.c stack_handler.c merge_sort.c populate.c
-OBJ 	= $(SRC:%.c=%.o)
-INC		= -I push_swap.h
+SRC 	=	push_swap.c verification.c stack_handler.c merge_sort.c populate.c \
+			close.c
+OBJ 	=	$(SRC:%.c=%.o)
+INC		=	-I push_swap.h
 
-BLUE 	= \033[1;36m
-WHITE 	= \033[0;39m
-T_LIB	= $(shell test -f ./libft/get_next_line_utils.o && echo "yes" 2>&1)
+BLUE 	=	\033[1;36m
+WHITE 	=	\033[0;39m
+T_LIB	=	$(shell test -f ./libft/get_next_line_utils.o && echo "yes" 2>&1)
 
 all: libft $(NAME)
 

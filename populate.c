@@ -6,7 +6,7 @@
 /*   By: julberna <julberna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 16:10:48 by julberna          #+#    #+#             */
-/*   Updated: 2023/10/20 18:14:51 by julberna         ###   ########.fr       */
+/*   Updated: 2023/10/20 20:26:58 by julberna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,16 +52,4 @@ t_stack	*duplicate(t_stack *stack)
 	dupe->current_pos = stack->current_pos;
 	dupe->next = duplicate(stack->next);
 	return (dupe);
-}
-
-void	free_stack(t_stack **stack)
-{
-	t_stack	*temp;
-
-	while ((*stack))
-	{
-		temp = (*stack);
-		(*stack) = (*stack)->next;
-		free(temp);
-	}
 }

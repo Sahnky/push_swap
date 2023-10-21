@@ -6,7 +6,7 @@
 /*   By: julberna <julberna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/15 21:43:00 by julberna          #+#    #+#             */
-/*   Updated: 2023/10/20 21:21:15 by julberna         ###   ########.fr       */
+/*   Updated: 2023/10/21 13:45:45 by julberna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,11 @@ void	check_digit(int argc, char ***argv)
 	{
 		j = -1;
 		while ((*argv)[i][++j] != '\0')
-			check_error(argv, (*argv)[i]);
+			check_error((*argv)[i]);
 	}
 }
 
-void	check_error(char ***argv, char *str)
+void	check_error(char *str)
 {
 	if (!ft_isdigit(*str) && !(ft_strchr("+-", *str) && ft_isdigit(*(str + 1))))
 		message(NON_DIGIT);
@@ -39,11 +39,10 @@ void	check_error(char ***argv, char *str)
 		message(OUT_LIMIT);
 	else
 		return ;
-	free_args(argv);
 	exit(FAILURE);
 }
 
-void	check_duplicate(char ***argv, t_stack **stack)
+void	check_duplicate(t_stack **stack)
 {
 	t_stack	*stack_copy;
 	t_stack	*temp;
@@ -57,7 +56,6 @@ void	check_duplicate(char ***argv, t_stack **stack)
 			if ((*stack)->value == stack_copy->value)
 			{
 				message(REPEAT);
-				free_args(argv);
 				free_stack(&temp);
 				exit(FAILURE);
 			}

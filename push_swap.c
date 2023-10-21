@@ -6,7 +6,7 @@
 /*   By: julberna <julberna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/15 21:38:46 by julberna          #+#    #+#             */
-/*   Updated: 2023/10/20 19:25:40 by julberna         ###   ########.fr       */
+/*   Updated: 2023/10/21 13:57:32 by julberna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,15 @@ int	main(int argc, char **argv)
 
 	check_digit(argc, &argv);
 	create_stack(argv, &stack_a);
-	check_duplicate(&argv, &stack_a);
+	check_duplicate(&stack_a);
 	if (check_sort(stack_a))
+	{
+		free_stack(&stack_a);
 		return (SUCCESS);
+	}
 	add_index(&stack_a);
 	lstiter(stack_a, print_stack);
 	free_stack(&stack_a);
-	free_args(&argv);
 	return (SUCCESS);
 }
 

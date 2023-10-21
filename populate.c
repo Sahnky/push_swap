@@ -6,11 +6,17 @@
 /*   By: julberna <julberna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 16:10:48 by julberna          #+#    #+#             */
-/*   Updated: 2023/10/20 20:26:58 by julberna         ###   ########.fr       */
+/*   Updated: 2023/10/21 14:10:02 by julberna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void	populate(t_stack **stack)
+{
+	add_index(stack);
+	lstiter(*stack, print_stack);
+}
 
 void	add_index(t_stack **stack)
 {

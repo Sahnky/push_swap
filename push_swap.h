@@ -6,7 +6,7 @@
 /*   By: julberna <julberna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/15 21:39:09 by julberna          #+#    #+#             */
-/*   Updated: 2023/10/21 13:45:26 by julberna         ###   ########.fr       */
+/*   Updated: 2023/10/21 14:18:36 by julberna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,14 +48,17 @@ int		check_sort(t_stack *stack);
 void	sort(t_stack **stack);
 void	check_error(char *str);
 void	free_args(char ***argv);
+void	conclude(t_stack **stack);
+void	populate(t_stack **stack);
 void	add_index(t_stack **stack);
 void	free_stack(t_stack **stack);
 void	print_stack(t_stack *stack);
 void	check_duplicate(t_stack **stack);
-void	check_digit(int argc, char ***argv);
+void	check_elements(int argc, char ***argv);
 void	lstnew(t_stack **stack, int value, int pos);
 void	lstiter(t_stack *stack, void (*f)(t_stack *));
 void	create_stack(char **values, t_stack **stack_a);
+void	verificate(int argc, char **argv, t_stack **stack);
 void	stack_split(t_stack *stack, t_stack **right, t_stack **left);
 
 t_stack	*lstlast(t_stack *stack);

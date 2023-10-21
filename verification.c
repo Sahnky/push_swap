@@ -6,13 +6,25 @@
 /*   By: julberna <julberna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/15 21:43:00 by julberna          #+#    #+#             */
-/*   Updated: 2023/10/21 13:45:45 by julberna         ###   ########.fr       */
+/*   Updated: 2023/10/21 14:15:20 by julberna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	check_digit(int argc, char ***argv)
+void	verificate(int argc, char **argv, t_stack **stack)
+{
+	check_elements(argc, &argv);
+	create_stack(argv, stack);
+	check_duplicate(stack);
+	if (check_sort(*stack))
+	{
+		free_stack(stack);
+		exit(SUCCESS);
+	}
+}
+
+void	check_elements(int argc, char ***argv)
 {
 	int		i;
 	int		j;

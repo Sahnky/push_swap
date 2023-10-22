@@ -6,7 +6,7 @@
 /*   By: julberna <julberna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/15 21:39:09 by julberna          #+#    #+#             */
-/*   Updated: 2023/10/21 21:21:00 by julberna         ###   ########.fr       */
+/*   Updated: 2023/10/22 15:28:57 by julberna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ void	check_elements(int argc, char ***argv);
 
 /* Populating stack A */
 void	add_index(t_stack **stack);
-t_stack	*duplicate(t_stack *stack);
+void	duplicate(t_stack *stack, t_stack **dupe);
 
 /* List manipulation */
 int		lstsize(t_stack *stack);

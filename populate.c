@@ -6,7 +6,7 @@
 /*   By: julberna <julberna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 16:10:48 by julberna          #+#    #+#             */
-/*   Updated: 2023/10/21 21:19:38 by julberna         ###   ########.fr       */
+/*   Updated: 2023/10/22 15:41:20 by julberna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,14 @@ void	create_stack(char **values, t_stack **stack_a)
 void	add_index(t_stack **stack)
 {
 	int			i;
-	t_stack		*dupe;
 	t_stack		*temp;
+	t_stack		*dupe;
 	const int	control = (*stack)->value;
 
 	i = 0;
-	dupe = duplicate(*stack);
-	temp = dupe;
+	duplicate(*stack, &dupe);
 	sort(&dupe);
+	temp = dupe;
 	stack_last(*stack)->next = *stack;
 	while (dupe)
 	{
@@ -48,25 +48,22 @@ void	add_index(t_stack **stack)
 		}
 		(*stack) = (*stack)->next;
 	}
-	free_stack(&temp);
 	while ((*stack)->next->value != control)
 		(*stack) = (*stack)->next;
+	free_stack(&temp);
 	temp = (*stack)->next;
 	(*stack)->next = NULL;
 	(*stack) = temp;
 }
 
-t_stack	*duplicate(t_stack *stack)
+void	duplicate(t_stack *stack, t_stack **dupe)
 {
-	t_stack	*dupe;
-
-	if (stack == NULL)
-		return (NULL);
-	dupe = ft_calloc(1, sizeof(t_stack));
-	dupe->value = stack->value;
-	dupe->current_pos = stack->current_pos;
-	dupe->next = duplicate(stack->next);
-	return (dupe);
+	*dupe = NULL;
+	while (stack)
+	{
+		new_stack(dupe, stack->value, stack->current_pos);
+		stack = stack->next;
+	}
 }
 
 void	print_stack(t_stack *stack)

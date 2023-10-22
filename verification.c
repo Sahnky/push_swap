@@ -6,7 +6,7 @@
 /*   By: julberna <julberna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/15 21:43:00 by julberna          #+#    #+#             */
-/*   Updated: 2023/10/21 14:15:20 by julberna         ###   ########.fr       */
+/*   Updated: 2023/10/21 18:32:36 by julberna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,9 @@ void	check_elements(int argc, char ***argv)
 void	check_error(char *str)
 {
 	if (!ft_isdigit(*str) && !(ft_strchr("+-", *str) && ft_isdigit(*(str + 1))))
-		message(NON_DIGIT);
+		error_message(NON_DIGIT);
 	else if (ft_atoi(str) > INT_MAX || ft_atoi(str) < INT_MIN)
-		message(OUT_LIMIT);
+		error_message(OUT_LIMIT);
 	else
 		return ;
 	exit(FAILURE);
@@ -67,7 +67,7 @@ void	check_duplicate(t_stack **stack)
 		{
 			if ((*stack)->value == stack_copy->value)
 			{
-				message(REPEAT);
+				error_message(REPEAT);
 				free_stack(&temp);
 				exit(FAILURE);
 			}

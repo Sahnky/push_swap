@@ -6,15 +6,18 @@
 /*   By: julberna <julberna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 18:34:59 by julberna          #+#    #+#             */
-/*   Updated: 2023/10/21 14:18:01 by julberna         ###   ########.fr       */
+/*   Updated: 2023/10/21 18:55:35 by julberna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	conclude(t_stack **stack)
+void	conclude(t_stack **stack_a, t_stack **stack_b, t_moves **moves)
 {
-	free_stack(stack);
+	free_stack(stack_a);
+	if (*stack_b)
+		free_stack(stack_b);
+	free_moves(moves);
 }
 
 void	free_args(char ***argv)
@@ -39,7 +42,19 @@ void	free_stack(t_stack **stack)
 	}
 }
 
-int	message(int msg_code)
+void	free_moves(t_moves **moves)
+{
+	t_moves	*temp;
+
+	while (*moves)
+	{
+		temp = (*moves);
+		(*moves) = (*moves)->next;
+		free(temp);
+	}
+}
+
+int	error_message(int msg_code)
 {
 	static char	*message[MSG_MAX] = {
 		"No errors, all good! ^-^\n",

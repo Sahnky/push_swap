@@ -6,7 +6,7 @@
 /*   By: julberna <julberna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 16:10:48 by julberna          #+#    #+#             */
-/*   Updated: 2023/10/21 14:10:02 by julberna         ###   ########.fr       */
+/*   Updated: 2023/10/21 21:19:38 by julberna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,16 @@
 void	populate(t_stack **stack)
 {
 	add_index(stack);
-	lstiter(*stack, print_stack);
+}
+
+void	create_stack(char **values, t_stack **stack_a)
+{
+	int		i;
+
+	i = -1;
+	*stack_a = NULL;
+	while (values[++i] != NULL)
+		new_stack(stack_a, ft_atoi(values[i]), i);
 }
 
 void	add_index(t_stack **stack)
@@ -29,7 +38,7 @@ void	add_index(t_stack **stack)
 	dupe = duplicate(*stack);
 	temp = dupe;
 	sort(&dupe);
-	lstlast(*stack)->next = *stack;
+	stack_last(*stack)->next = *stack;
 	while (dupe)
 	{
 		if (dupe->value == (*stack)->value)
@@ -58,4 +67,10 @@ t_stack	*duplicate(t_stack *stack)
 	dupe->current_pos = stack->current_pos;
 	dupe->next = duplicate(stack->next);
 	return (dupe);
+}
+
+void	print_stack(t_stack *stack)
+{
+	ft_printf("Value: %d\nPosit: %d\nIndex: %d\n\n", \
+	stack->value, stack->current_pos, stack->index);
 }

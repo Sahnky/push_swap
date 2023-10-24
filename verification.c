@@ -6,7 +6,7 @@
 /*   By: julberna <julberna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/15 21:43:00 by julberna          #+#    #+#             */
-/*   Updated: 2023/10/23 20:59:09 by julberna         ###   ########.fr       */
+/*   Updated: 2023/10/24 15:28:59 by julberna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,13 @@ void	check_elements(int argc, char ***argv)
 	int		j;
 
 	(*argv)++;
-	if (argc < 2 || !(*argv))
+	if (argc < 2)
 		exit(FAILURE);
+	if (ft_strlen(**argv) == 0)
+	{
+		write(2, "Error\n", 6);
+		exit(FAILURE);
+	}
 	if (argc == 2)
 		(*argv) = ft_split((*argv)[0], ' ');
 	i = -1;

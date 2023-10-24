@@ -6,7 +6,7 @@
 /*   By: julberna <julberna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/15 21:39:09 by julberna          #+#    #+#             */
-/*   Updated: 2023/10/23 21:44:04 by julberna         ###   ########.fr       */
+/*   Updated: 2023/10/24 18:29:41 by julberna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,6 @@ void	duplicate(t_stack *stack, t_stack **dupe);
 /* List manipulation */
 int		lstsize(t_stack *stack);
 void	moves_message(int msg_code);
-void	print_stack(t_stack *stack);
 void	print_moves(t_moves *moves);
 void	new_move(t_moves **moves, int move);
 void	lstiter(t_stack *stack, void (*f)(t_stack *));
@@ -110,16 +109,15 @@ void	sort_larger(t_stack **stack_a, t_stack **stack_b, t_moves **moves);
 /* Push Swap logic utils */
 int		get_smallest_index(t_stack *stack);
 void	get_current_position(t_stack **stack);
+void	b_cost(t_stack **stack_b, int size_b);
 void	rotate_sort(t_stack **stack, t_moves **moves);
+void	a_cost(t_stack **stack_a, t_stack **stack_b, int size_a);
 void	get_target_position(t_stack **stack_a, t_stack **stack_b);
 void	calculate_move_cost(t_stack **stack_a, t_stack **stack_b);
 void	execute_cheapest(t_stack **stack_a, t_stack **stack_b, t_moves **moves);
-void	double_rotation(t_stack **stack_a, t_stack **stack_b, t_moves **moves, \
-						t_stack *chosen);
-void	double_reverse(t_stack **stack_a, t_stack **stack_b, t_moves **moves, \
-						t_stack *chosen);
-void	single_rotations(t_stack **stack_a, t_stack **stack_b, \
-						t_moves **moves, t_stack *chosen);
+void	dual_rx(t_stack **a, t_stack **b, t_moves **move, t_stack *chosen);
+void	dual_rrx(t_stack **a, t_stack **b, t_moves **move, t_stack *chosen);
+void	sole_rx(t_stack **a, t_stack **b, t_moves **move, t_stack *chosen);
 t_stack	*choose_cheapest(t_stack *stack_b);
 
 /* Conclude */

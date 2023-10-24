@@ -6,7 +6,7 @@
 /*   By: julberna <julberna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/15 21:38:46 by julberna          #+#    #+#             */
-/*   Updated: 2023/10/23 21:57:00 by julberna         ###   ########.fr       */
+/*   Updated: 2023/10/24 15:25:23 by julberna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,6 @@ int	main(int argc, char **argv)
 	verificate(argc, argv, &stack_a);
 	populate(&stack_a);
 	sorting(&stack_a, &stack_b, &moves);
-	write(1, "\n", 1);
-	lstiter(stack_a, print_stack);
 	conclude(&stack_a, &stack_b, &moves);
 	return (SUCCESS);
 }

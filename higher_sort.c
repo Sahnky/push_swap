@@ -6,7 +6,7 @@
 /*   By: julberna <julberna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/22 16:52:13 by julberna          #+#    #+#             */
-/*   Updated: 2023/10/23 21:52:44 by julberna         ###   ########.fr       */
+/*   Updated: 2023/10/24 18:13:17 by julberna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,51 +59,20 @@ void	get_target_position(t_stack **stack_a, t_stack **stack_b)
 int	get_smallest_index(t_stack *stack)
 {
 	int	smallest;
+	int	current_pos;
 
-	smallest = stack->current_pos;
+	smallest = stack->index;
+	current_pos = stack->current_pos;
 	while (stack)
 	{
-		if (stack->current_pos < smallest)
-			smallest = stack->current_pos;
+		if (stack->index < smallest)
+		{
+			smallest = stack->index;
+			current_pos = stack->current_pos;
+		}
 		stack = stack->next;
 	}
-	return (smallest);
-}
-
-void	calculate_move_cost(t_stack **stack_a, t_stack **stack_b)
-{
-	int		size_a;
-	int		size_b;
-	t_stack	*temp_a;
-	t_stack	*temp_b;
-
-	temp_a = *stack_a;
-	temp_b = *stack_b;
-	size_a = lstsize(*stack_a);
-	size_b = lstsize(*stack_b);
-	while (*stack_b)
-	{
-		(*stack_b)->cost_a = 0;
-		if ((*stack_b)->current_pos < size_b / 2 || size_b == 1)
-		{
-			(*stack_b)->cost_b = 1;
-			(*stack_b)->cost_b += (*stack_b)->current_pos;
-		}
-		else
-		{
-			(*stack_b)->cost_b = -1;
-			(*stack_b)->cost_b += -1 * (size_b - (*stack_b)->current_pos);
-		}
-		while ((*stack_a)->current_pos != (*stack_b)->target_pos)
-			*stack_a = (*stack_a)->next;
-		if ((*stack_a)->current_pos <= size_a / 2)
-			(*stack_b)->cost_a += (*stack_a)->current_pos;
-		else
-			(*stack_b)->cost_a += -1 * (size_a - (*stack_a)->current_pos);
-		*stack_b = (*stack_b)->next;
-		*stack_a = temp_a;
-	}
-	*stack_b = temp_b;
+	return (current_pos);
 }
 
 t_stack	*choose_cheapest(t_stack *stack_b)

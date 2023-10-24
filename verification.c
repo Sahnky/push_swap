@@ -6,7 +6,7 @@
 /*   By: julberna <julberna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/15 21:43:00 by julberna          #+#    #+#             */
-/*   Updated: 2023/10/21 18:32:36 by julberna         ###   ########.fr       */
+/*   Updated: 2023/10/23 20:59:09 by julberna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ void	check_elements(int argc, char ***argv)
 	int		j;
 
 	(*argv)++;
-	if (argc < 2)
-		exit(1);
+	if (argc < 2 || !(*argv))
+		exit(FAILURE);
 	if (argc == 2)
 		(*argv) = ft_split((*argv)[0], ' ');
 	i = -1;
@@ -45,13 +45,21 @@ void	check_elements(int argc, char ***argv)
 
 void	check_error(char *str)
 {
-	if (!ft_isdigit(*str) && !(ft_strchr("+-", *str) && ft_isdigit(*(str + 1))))
-		error_message(NON_DIGIT);
-	else if (ft_atoi(str) > INT_MAX || ft_atoi(str) < INT_MIN)
-		error_message(OUT_LIMIT);
-	else
-		return ;
-	exit(FAILURE);
+	while (*str)
+	{
+		if (!ft_isdigit(*str) && !(ft_strchr("+-", *str) && \
+			ft_isdigit(*(str + 1))))
+		{
+			write(2, "Error\n", 6);
+			exit(FAILURE);
+		}
+		else if (ft_atol(str) > INT_MAX || ft_atol(str) < INT_MIN)
+		{
+			write(2, "Error\n", 6);
+			exit(FAILURE);
+		}
+		str++;
+	}
 }
 
 void	check_duplicate(t_stack **stack)
@@ -67,7 +75,7 @@ void	check_duplicate(t_stack **stack)
 		{
 			if ((*stack)->value == stack_copy->value)
 			{
-				error_message(REPEAT);
+				write(2, "Error\n", 6);
 				free_stack(&temp);
 				exit(FAILURE);
 			}

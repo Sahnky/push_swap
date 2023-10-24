@@ -1,11 +1,12 @@
 NAME 	=	push_swap
 
 CC		=	cc
-CFLAGS	=	-Werror -Wall -Wextra -g3
+CFLAGS	=	-Werror -Wall -Wextra -g3 -O3
 LIBFT 	=	./libft/libft.a
 
 SRC 	=	push_swap.c verification.c stack_handler.c moves_handler.c \
-			merge_sort.c populate.c sorting.c moves_1.c moves_2.c close.c
+			merge_sort.c populate.c sorting.c moves_1.c moves_2.c close.c \
+			higher_sort.c moves_execution.c
 OBJ 	=	$(SRC:%.c=%.o)
 INC		=	-I push_swap.h
 

@@ -6,7 +6,7 @@
 /*   By: julberna <julberna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 18:34:59 by julberna          #+#    #+#             */
-/*   Updated: 2023/10/21 18:55:35 by julberna         ###   ########.fr       */
+/*   Updated: 2023/10/23 21:57:20 by julberna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,20 +52,4 @@ void	free_moves(t_moves **moves)
 		(*moves) = (*moves)->next;
 		free(temp);
 	}
-}
-
-int	error_message(int msg_code)
-{
-	static char	*message[MSG_MAX] = {
-		"No errors, all good! ^-^\n",
-		"Error!\nThe list contains non-digit elements."
-		" Please, provide a valid list of integers.\n",
-		"Error!\nThe list contains values that don't fit an integer."
-		" Please, provide a valid list of numbers.\n",
-		"Error!\nThe list contains duplicate elements."
-		" Please, provide a list of unique integers.\n"
-	};
-
-	write(2, message[msg_code], ft_strlen(message[msg_code]));
-	return (msg_code);
 }

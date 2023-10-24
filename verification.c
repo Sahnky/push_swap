@@ -6,7 +6,7 @@
 /*   By: julberna <julberna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/15 21:43:00 by julberna          #+#    #+#             */
-/*   Updated: 2023/10/24 15:28:59 by julberna         ###   ########.fr       */
+/*   Updated: 2023/10/24 19:49:03 by julberna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,12 @@ void	check_error(char *str)
 	{
 		if (!ft_isdigit(*str) && !(ft_strchr("+-", *str) && \
 			ft_isdigit(*(str + 1))))
+		{
+			write(2, "Error\n", 6);
+			exit(FAILURE);
+		}
+		else if (ft_isdigit(*str) && ft_strlen(str) > 1 && \
+				!ft_isdigit(*(str + 1)))
 		{
 			write(2, "Error\n", 6);
 			exit(FAILURE);

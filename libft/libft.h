@@ -6,7 +6,7 @@
 /*   By: julberna <julberna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 14:52:12 by julberna          #+#    #+#             */
-/*   Updated: 2023/10/09 21:38:08 by julberna         ###   ########.fr       */
+/*   Updated: 2023/10/23 20:47:59 by julberna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ void		ft_striteri(char *s, void (*f)(unsigned int, char*));
 size_t		ft_strlen(const char *str);
 size_t		ft_strlcpy(char *dest, const char *src, size_t size);
 size_t		ft_strlcat(char *dest, const char *src, size_t size);
+long int	ft_atol(const char *nptr);
 
 int			ft_lstsize(t_list *lst);
 t_list		*ft_lstlast(t_list *lst);

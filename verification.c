@@ -6,7 +6,7 @@
 /*   By: julberna <julberna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/15 21:43:00 by julberna          #+#    #+#             */
-/*   Updated: 2023/10/24 19:49:03 by julberna         ###   ########.fr       */
+/*   Updated: 2023/10/24 21:07:20 by julberna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	verificate(int argc, char **argv, t_stack **stack)
 {
-	check_elements(argc, &argv);
+	check_elements(argc, &argv, -1, -1);
 	create_stack(argv, stack);
 	check_duplicate(stack);
 	if (check_sort(*stack))
@@ -24,11 +24,8 @@ void	verificate(int argc, char **argv, t_stack **stack)
 	}
 }
 
-void	check_elements(int argc, char ***argv)
+void	check_elements(int argc, char ***argv, int i, int j)
 {
-	int		i;
-	int		j;
-
 	(*argv)++;
 	if (argc < 2)
 		exit(FAILURE);
@@ -39,7 +36,11 @@ void	check_elements(int argc, char ***argv)
 	}
 	if (argc == 2)
 		(*argv) = ft_split((*argv)[0], ' ');
-	i = -1;
+	if (**argv == NULL)
+	{
+		write(2, "Error\n", 6);
+		exit(FAILURE);
+	}
 	while ((*argv)[++i] != NULL)
 	{
 		j = -1;
@@ -50,26 +51,29 @@ void	check_elements(int argc, char ***argv)
 
 void	check_error(char *str)
 {
-	while (*str)
+	int	i;
+
+	i = 0;
+	while (str[i])
 	{
-		if (!ft_isdigit(*str) && !(ft_strchr("+-", *str) && \
-			ft_isdigit(*(str + 1))))
+		if (!ft_isdigit(str[i]) && !(ft_strchr("+-", str[i]) && \
+			ft_isdigit(str[i + 1])))
 		{
 			write(2, "Error\n", 6);
 			exit(FAILURE);
 		}
-		else if (ft_isdigit(*str) && ft_strlen(str) > 1 && \
-				!ft_isdigit(*(str + 1)))
+		else if (ft_isdigit(str[i]) && ft_strlen(&str[i]) > 1 && \
+				!ft_isdigit(str[i + 1]))
 		{
 			write(2, "Error\n", 6);
 			exit(FAILURE);
 		}
-		else if (ft_atol(str) > INT_MAX || ft_atol(str) < INT_MIN)
-		{
-			write(2, "Error\n", 6);
-			exit(FAILURE);
-		}
-		str++;
+		i++;
+	}
+	if (ft_atol(str) > INT_MAX || ft_atol(str) < INT_MIN)
+	{
+		write(2, "Error\n", 6);
+		exit(FAILURE);
 	}
 }
 

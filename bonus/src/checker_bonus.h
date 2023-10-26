@@ -6,7 +6,7 @@
 /*   By: julberna <julberna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 14:59:26 by julberna          #+#    #+#             */
-/*   Updated: 2023/10/25 21:07:43 by julberna         ###   ########.fr       */
+/*   Updated: 2023/10/25 23:41:54 by julberna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,9 @@
 # define INT_MIN	-2147483648
 
 void	get_movements(t_moves **moves);
+void	check_sorting(t_stack **stack_a);
 void	validate_move(char *move, t_moves **moves);
+void	execute_moves(t_stack **stack_a, t_stack **stack_b, t_moves **tries, \
+						t_moves **moves);
 
 #endif

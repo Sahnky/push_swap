@@ -6,7 +6,7 @@
 /*   By: julberna <julberna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/15 21:39:09 by julberna          #+#    #+#             */
-/*   Updated: 2023/10/25 20:50:06 by julberna         ###   ########.fr       */
+/*   Updated: 2023/10/25 21:29:35 by julberna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,17 +41,17 @@ typedef struct s_moves
 
 typedef enum e_operations
 {
-	PA = 0,
-	PB,
-	SA,
+	SA = 0,
 	SB,
-	SS,
 	RA,
 	RB,
-	RR,
 	RRA,
 	RRB,
+	PA,
+	PB,
+	RR,
 	RRR,
+	SS,
 	OP_MAX,
 }			t_operations;
 

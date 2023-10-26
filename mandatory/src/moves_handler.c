@@ -6,7 +6,7 @@
 /*   By: julberna <julberna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 17:40:19 by julberna          #+#    #+#             */
-/*   Updated: 2023/10/21 18:40:56 by julberna         ###   ########.fr       */
+/*   Updated: 2023/10/25 21:34:20 by julberna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,17 +48,17 @@ void	print_moves(t_moves *moves)
 void	moves_message(int msg_code)
 {
 	static char	*message[OP_MAX] = {
-		"pa\n",
-		"pb\n",
 		"sa\n",
 		"sb\n",
-		"ss\n",
 		"ra\n",
 		"rb\n",
-		"rr\n",
 		"rra\n",
 		"rrb\n",
-		"rrr\n"
+		"pa\n",
+		"pb\n",
+		"rr\n",
+		"rrr\n",
+		"ss\n"
 	};
 
 	write(1, message[msg_code], ft_strlen(message[msg_code]));

@@ -6,7 +6,7 @@
 /*   By: julberna <julberna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/15 21:39:09 by julberna          #+#    #+#             */
-/*   Updated: 2023/10/24 21:06:54 by julberna         ###   ########.fr       */
+/*   Updated: 2023/10/25 20:50:06 by julberna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include <unistd.h>
 # include <stdlib.h>
-# include "./libft/libft.h"
+# include "libft.h"
 
 # define FAILURE	-1
 # define SUCCESS	0

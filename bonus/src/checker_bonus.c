@@ -1,31 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   checker_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: julberna <julberna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/03 14:09:55 by julberna          #+#    #+#             */
-/*   Updated: 2023/10/25 16:36:25 by julberna         ###   ########.fr       */
+/*   Created: 2023/10/25 15:04:12 by julberna          #+#    #+#             */
+/*   Updated: 2023/10/25 21:14:34 by julberna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "checker_bonus.h"
 
-char	*ft_strchr(const char *s, int c)
+int	main(int argc, char **argv)
 {
-	int	i;
+	t_moves	*moves;
+	t_stack	*stack_a;
+	// t_stack	*stack_b;
 
-	i = 0;
-	if (s == NULL)
-		return (NULL);
-	while (s[i] != '\0')
-	{
-		if (s[i] == (unsigned char)c)
-			return ((char *)s + i);
-		i++;
-	}
-	if ((unsigned char)c == '\0')
-		return ((char *)s + i);
-	return (NULL);
+	verificate(argc, argv, &stack_a);
+	get_movements(&moves);
+	// execute_movements(&stack_a, &stack_b, &moves);
 }

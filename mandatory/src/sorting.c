@@ -6,7 +6,7 @@
 /*   By: julberna <julberna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 14:26:37 by julberna          #+#    #+#             */
-/*   Updated: 2023/10/23 20:18:44 by julberna         ###   ########.fr       */
+/*   Updated: 2023/10/27 00:52:16 by julberna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ void	sorting(t_stack **stack_a, t_stack **stack_b, t_moves **moves)
 		sa(stack_a, moves);
 	else if (size_sa == 3)
 		sort_3(stack_a, moves);
+	else if (size_sa <= 5)
+		sort_5(stack_a, stack_b, moves);
 	else
 		sort_larger(stack_a, stack_b, moves);
 	if (!check_sort(*stack_a))
@@ -45,39 +47,36 @@ void	sort_3(t_stack **stack_a, t_moves **moves)
 	sort_3(stack_a, moves);
 }
 
+void	sort_5(t_stack **stack_a, t_stack **stack_b, t_moves **moves)
+{
+	t_moves	*oneway;
+	t_moves	*other;
+	t_stack	*dupe_1;
+	t_stack	*dupe_2;
+
+	one_way(stack_a, stack_b, &dupe_1, &oneway);
+	another(stack_a, stack_b, &dupe_2, &other);
+	free_stack(stack_a);
+	*stack_a = NULL;
+	if (moves_size(oneway) < moves_size(other))
+	{
+		*moves = oneway;
+		*stack_a = dupe_1;
+		free_stack(&dupe_2);
+		free_moves(&other);
+	}
+	else
+	{
+		*moves = other;
+		*stack_a = dupe_2;
+		free_stack(&dupe_1);
+		free_moves(&oneway);
+	}
+}
+
 void	sort_larger(t_stack **stack_a, t_stack **stack_b, t_moves **moves)
 {
 	push_to_b(stack_a, stack_b, moves);
 	sort_3(stack_a, moves);
-	push_to_a(stack_a, stack_b, moves);
-}
-
-void	push_to_b(t_stack **stack_a, t_stack **stack_b, t_moves **moves)
-{
-	int		middle;
-
-	middle = lstsize(*stack_a) / 2;
-	while (lstsize(*stack_a) > middle && lstsize(*stack_a) > 3)
-	{
-		if ((*stack_a)->index <= middle)
-		{
-			pb(stack_a, stack_b, moves);
-		}
-		else
-			ra(stack_a, moves, 1);
-	}
-	while (lstsize(*stack_a) > 3)
-		pb(stack_a, stack_b, moves);
-}
-
-void	push_to_a(t_stack **stack_a, t_stack **stack_b, t_moves **moves)
-{
-	if (*stack_b == NULL)
-		return ;
-	get_current_position(stack_b);
-	get_current_position(stack_a);
-	get_target_position(stack_a, stack_b);
-	calculate_move_cost(stack_a, stack_b);
-	execute_cheapest(stack_a, stack_b, moves);
 	push_to_a(stack_a, stack_b, moves);
 }

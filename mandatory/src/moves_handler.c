@@ -6,7 +6,7 @@
 /*   By: julberna <julberna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 17:40:19 by julberna          #+#    #+#             */
-/*   Updated: 2023/10/25 21:34:20 by julberna         ###   ########.fr       */
+/*   Updated: 2023/10/26 14:22:32 by julberna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,11 +52,11 @@ void	moves_message(int msg_code)
 		"sb\n",
 		"ra\n",
 		"rb\n",
+		"rr\n",
 		"rra\n",
 		"rrb\n",
 		"pa\n",
 		"pb\n",
-		"rr\n",
 		"rrr\n",
 		"ss\n"
 	};

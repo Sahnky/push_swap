@@ -6,16 +6,11 @@
 /*   By: julberna <julberna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 16:10:48 by julberna          #+#    #+#             */
-/*   Updated: 2023/10/24 18:05:52 by julberna         ###   ########.fr       */
+/*   Updated: 2023/10/26 20:58:19 by julberna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-void	populate(t_stack **stack)
-{
-	add_index(stack);
-}
 
 void	create_stack(char **values, t_stack **stack_a)
 {
@@ -64,4 +59,29 @@ void	duplicate(t_stack *stack, t_stack **dupe)
 		new_stack(dupe, stack->value, stack->current_pos);
 		stack = stack->next;
 	}
+}
+
+int	copy_multi_argv(int argc, char **argv, char ***arguments)
+{
+	int		size;
+
+	size = 0;
+	*arguments = ft_calloc(argc, sizeof(char *));
+	while (*argv)
+	{
+		(*arguments)[size] = ft_calloc(ft_strlen(*argv) + 1, sizeof(char));
+		ft_strlcpy((*arguments)[size], *argv, ft_strlen(*argv) + 1);
+		size++;
+		argv++;
+	}
+	return (size);
+}
+
+int	copy_single_argv(char **argv, char ***arguments)
+{
+	int		size;
+
+	size = ft_wordcount(*argv, ' ');
+	*arguments = ft_split(*argv, ' ');
+	return (size);
 }

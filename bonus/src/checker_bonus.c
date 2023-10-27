@@ -6,17 +6,11 @@
 /*   By: julberna <julberna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 15:04:12 by julberna          #+#    #+#             */
-/*   Updated: 2023/10/25 23:45:38 by julberna         ###   ########.fr       */
+/*   Updated: 2023/10/27 00:53:34 by julberna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "checker_bonus.h"
-
-void	print_stack(t_stack *stack)
-{
-	ft_printf("Value: %d\nPosit: %d\nIndex: %d\n\n", \
-	stack->value, stack->current_pos, stack->index);
-}
 
 int	main(int argc, char **argv)
 {
@@ -25,11 +19,11 @@ int	main(int argc, char **argv)
 	t_moves	*tries;
 	t_moves	*moves;
 
-	verificate(argc, argv, &stack_a);
-	populate(&stack_a);
-	get_movements(&tries);
-	execute_moves(&stack_a, &stack_b, &tries, &moves);
-	check_sorting(&stack_a);
+	verify(argc, argv, &stack_a, &stack_b);
+	add_index(&stack_a);
+	get_movements(&tries, &moves);
+	execute(&stack_a, &stack_b, tries, &moves);
+	check_sorting(&stack_a, &stack_b);
 	conclude(&stack_a, &stack_b, &moves);
 	free_moves(&tries);
 }

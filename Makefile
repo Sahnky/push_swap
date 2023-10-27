@@ -2,7 +2,7 @@ NAME 	=	push_swap
 BONUS	=	checker
 
 CC		=	cc
-CFLAGS	=	-Werror -Wall -Wextra -g3 -O0
+CFLAGS	=	-Werror -Wall -Wextra -g3 -O3
 LIBFT 	=	./libft/libft.a
 INC_L	=	-I ./libft
 
@@ -12,9 +12,10 @@ OB_DIR	=	bonus/obj/
 SB_DIR	=	bonus/src/
 
 M_ONE 	=	$(addprefix $(SM_DIR), push_swap.c)
-M_TWO	=	$(addprefix $(SM_DIR), verification.c stack_handler.c \
-			moves_handler.c merge_sort.c populate.c sorting.c moves_1.c \
-			moves_2.c close.c higher_sort.c moves_execution.c calculate_cost.c)
+M_TWO	=	$(addprefix $(SM_DIR), verification.c stack_handler.c sorting.c \
+			moves_handler.c merge_sort.c populate.c moves_1.c sorting_utils.c \
+			moves_2.c close.c higher_sort.c moves_execution.c calculate_cost.c \
+			comparison.c)
 SRC_M	+=	$(M_ONE)
 SRC_M	+=	$(M_TWO)
 OBJ_M 	=	$(SRC_M:$(SM_DIR)%.c=$(OM_DIR)%.o)

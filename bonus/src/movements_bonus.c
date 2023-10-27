@@ -6,7 +6,7 @@
 /*   By: julberna <julberna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 19:02:46 by julberna          #+#    #+#             */
-/*   Updated: 2023/10/27 00:50:33 by julberna         ###   ########.fr       */
+/*   Updated: 2023/10/27 01:44:32 by julberna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	verify(int argc, char **argv, t_stack **stack_a, t_stack **stack_b)
 	check_duplicate(stack_a);
 }
 
-void	get_movements(t_moves **tries, t_moves **moves)
+void	get_movements(t_moves **tries, t_moves **moves, t_stack **stack_a)
 {
 	char	*move;
 
@@ -29,14 +29,24 @@ void	get_movements(t_moves **tries, t_moves **moves)
 	{
 		move = get_next_line(0);
 		if (move && ft_strlen(move) > 0)
-			validate_move(move, tries);
+		{
+			if (!validate_move(move, tries))
+			{
+				free(move);
+				if (tries)
+					free_moves(tries);
+				write(2, "Error\n", 6);
+				free_stack(stack_a);
+				exit(FAILURE);
+			}
+		}
 		else
 			break ;
 		free(move);
 	}
 }
 
-void	validate_move(char *move, t_moves **tries)
+int	validate_move(char *move, t_moves **tries)
 {
 	int			i;
 	int			size;
@@ -51,12 +61,11 @@ void	validate_move(char *move, t_moves **tries)
 		if (!ft_strncmp(valid_moves[i], move, size))
 		{
 			new_move(tries, i);
-			return ;
+			return (1);
 		}
 		i++;
 	}
-	write(2, "Error\n", 6);
-	exit(FAILURE);
+	return (0);
 }
 
 void	execute(t_stack **a, t_stack **b, t_moves *tries, t_moves **moves)

@@ -6,7 +6,7 @@
 /*   By: julberna <julberna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 15:04:12 by julberna          #+#    #+#             */
-/*   Updated: 2023/10/27 00:53:34 by julberna         ###   ########.fr       */
+/*   Updated: 2023/10/27 01:39:28 by julberna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	main(int argc, char **argv)
 
 	verify(argc, argv, &stack_a, &stack_b);
 	add_index(&stack_a);
-	get_movements(&tries, &moves);
+	get_movements(&tries, &moves, &stack_a);
 	execute(&stack_a, &stack_b, tries, &moves);
 	check_sorting(&stack_a, &stack_b);
 	conclude(&stack_a, &stack_b, &moves);

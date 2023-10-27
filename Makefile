@@ -27,7 +27,7 @@ OBJ_B	=	$(SRC_B:$(SB_DIR)%.c=$(OB_DIR)%.o)
 
 BLUE 	=	\033[1;36m
 WHITE 	=	\033[0;39m
-T_LIB	=	$(shell test -f ./libft/get_next_line_utils.o && echo "yes" 2>&1)
+T_LIB	=	$(shell test -f ./libft/get_next_line.o && echo "yes" 2>&1)
 
 all: libft $(NAME)
 
@@ -48,7 +48,7 @@ $(OB_DIR)%.o: $(SB_DIR)%.c
 	$(CC) $(CFLAGS) $(INC_L) $(INC_M) -c $< -o $@
 
 libft:
-	@if ! [ $(T_LIB) ]; then echo "$(BLUE)-*- Creating libft library. -*-$(WHITE)";fi
+	@if ! [ $(T_LIB) ]; then echo "$(BLUE)-*- Creating libft library. -*- $(WHITE)";fi
 	@make -C libft/ --no-print-directory
 
 clean:
@@ -63,4 +63,8 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all bonus libft clean fclean re
+both: all bonus
+
+rebonus: fclean bonus
+
+.PHONY: all bonus libft clean fclean re rebonus both
